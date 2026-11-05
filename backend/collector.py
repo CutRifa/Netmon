@@ -6,7 +6,7 @@ import time
 from datetime import datetime
 
 # Alamat yang mau dipantau. Ganti IP router sesuai jaringanmu.
-TARGETS = ["google.com", "1.1.1.1", "192.168.140.77"]
+TARGETS = ["google.com", "1.1.1.1", "192.168.149.128"]
 INTERVAL_DETIK = 10
 DB_FILE = "netmon.db"
 
