@@ -2,9 +2,10 @@ import sqlite3
 
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
+from deteksi import cari_kejadian
 
 DB_FILE = "netmon.db"
-HOST_DIABAIKAN = ["192.168.1.1"]  # sisa alamat tebakan yang salah
+HOST_DIABAIKAN = ["192.168.1.1", "192.168.140.77"]  # sisa alamat tebakan yang salah
 
 app = FastAPI(title="NetMon API")
 
@@ -80,3 +81,7 @@ def statistik():
         GROUP BY host
     """
     return ambil_data(sql, HOST_DIABAIKAN)
+
+@app.get("/events")
+def kejadian(limit: int = Query(20, ge=1, le=200)):
+    return list(reversed(cari_kejadian()))[:limit]  # terbaru dulu
